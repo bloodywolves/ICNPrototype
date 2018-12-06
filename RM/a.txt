@@ -1,0 +1,4 @@
+  CC main.o
+  LD l3fwd
+  INSTALL-APP l3fwd
+  INSTALL-MAP l3fwd.map

@@ -1,0 +1,45 @@
+/*CoLor get包的定义方法。*/
+
+#ifndef _CoLoR_H_
+#define _CoLoR_H_
+#include <stdio.h>
+
+#define OFFLEN                4
+#define LENLEN                4
+#define RESERVEDLEN   8
+#define SIDLEN                20
+#define NIDLEN               16
+#define DATALEN             8        //n=2,  暂时不知道多少
+#define PUBKEYLEN        8      	 //n=2，暂时不知道多少
+
+struct CoLoR_get
+{
+	//CoLoR-Get头
+	uint8_t version_type;////版本4位，类型4位
+	uint8_t ttl;//生存时间
+	uint16_t total_len;//总长度   //23字节
+	
+	uint16_t port_no;//端口号
+	uint16_t checksum;//检验和
+	
+	uint8_t sid_len;//SID长度               //sid_len=20
+	uint8_t nid_len;//NID长度             //nid_len=16
+	uint8_t pid_n;//PID数量                 //pid_n=0
+	uint8_t options_static;//固定首部选项
+
+	uint8_t offset[OFFLEN];//偏移量
+	uint8_t length[LENLEN];//偏移长度
+	uint8_t reserved[RESERVEDLEN];//偏移长度
+	
+	uint16_t publickey_len;//公钥长度 //publickey_len=8
+	uint16_t mtu;//最大传输单元
+	
+	uint8_t sid[SIDLEN];//SID
+	uint8_t nid[NIDLEN];//NID
+	
+	uint8_t data[DATALEN];//Data
+	
+	uint8_t publickey[PUBKEYLEN];//公钥
+};
+typedef struct  CoLoR_get     CoLoR_get_t; //DPDK 中typedef 都用_t 结尾
+
